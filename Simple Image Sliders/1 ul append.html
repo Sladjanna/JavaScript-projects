@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Slider</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<style>
+
+		#slider {
+		  position: relative;
+  		  width: 700px;
+		  height: 500px;
+		  overflow: hidden;
+		  margin: 30px auto;
+		  border: 2px solid #58595b;		  
+		}
+		ul {
+		  position: relative;
+		  margin: 0;
+		  padding: 0;
+		  height: 500px;
+		  list-style: none;
+		}
+		li {
+		  position: relative;
+		  display: block;
+		  float: left;
+		  margin: 0;
+		  padding: 0;
+		  width:700px; 
+		  height:500px; 
+		}
+	  .arrow{
+        	position:absolute; 
+        	width:50px; 
+        	z-index:1000; 
+        	top:40%; 
+        }
+        .left{
+        	left:0;
+        }
+        .right{
+        	right:0;
+        }
+	</style>
+</head>
+
+<body>
+	<div id="slider">
+		<a href="#" class="arrow right"><img src="arrow_right.png" alt="arrow"></a>
+		<a href="#" class="arrow left"><img src="arrow_left.png" alt="arrow"></a>
+		<ul>
+			<li><img src="image1.jpg" /></li>
+			<li><img src="image2.jpg" /></li>
+			<li><img src="image3.jpg" /></li>
+			<li><img src="image4.jpg" /></li>
+		</ul>  
+	</div>
+
+	<script>
+		$(document).ready(function ($) {
+
+			var count = $('ul li').length;
+			var sliderWidth = count * 700;
+			//duzina lista je ukupna duzina svih slika, i lista pomerena u levo za sirinu jedne slike
+			$('ul').css({ width: sliderWidth, marginLeft: - 700 });
+			
+			// poslednju sliku ubacuje ispred prve u listi
+		    $('ul li:last-child').prependTo('ul');
+
+
+		    $('a.arrow.left').click(function () {
+		        $('ul').animate({left: + 700}, 500, function () {
+		            $('ul li:last-child').prependTo('ul');   //poslednja slika ispred svih
+		            $('ul').css('left', 0);  //vraca levu ivicu liste na 0
+		        });
+		    });
+
+
+		    $('a.arrow.right').click(function () {
+		        $('ul').animate({left: - 700}, 500, function () {
+		            $('ul li:first-child').appendTo('ul');  //prva slika ide na posledje mesto u listi
+		            $('ul').css('left', 0);
+		        });
+		    });
+
+		});    
+
+	</script>	
+</body>
+</html>

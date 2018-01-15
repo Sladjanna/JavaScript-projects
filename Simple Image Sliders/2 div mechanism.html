@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Slider</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style>
+		#container{
+			width:700px; 
+			height:500px; 
+			position:relative; 
+			overflow:hidden;  
+			margin: 30px auto;
+			background-color: #58595b;
+		}
+        #slider{
+        	width:100%; 
+        	position:relative; 
+        	z-index:1;
+        }
+        .image{
+        	width:700px; 
+	     	height:500px; 
+        	float:left;    
+        	position:relative; 
+        }
+ 
+        .image img{
+        	width:700px;  
+        	height:500px; 
+        	position:absolute; 
+        	top:0; 
+        	left:0; 
+        	z-index:3;
+        
+        }   
+ 
+        .arrow{
+        	position:absolute; 
+        	width:50px; 
+        	z-index:1000; 
+        	top:40%; 
+        }
+        .left{
+        	left:0;
+        }
+        .right{
+        	right:0;
+        }
+</style>
+</head>
+<body>
+	<div id="container">
+        <a href="#" class="arrow left"><img src="arrow_left.png"  alt="arrow"></a>
+		<div id="slider">
+			<div class="image"><img src="image1.jpg" alt="image1"></div>
+			<div class="image"><img src="image2.jpg" alt="image2"></div>			
+			<div class="image"><img src="image3.jpg" alt="image3"></div>	
+			<div class="image"><img src="image4.jpg" alt="image4"></div>	
+		</div>
+        <a href="#" class="arrow right"><img src="arrow_right.png"  alt="arrow"></a>
+	</div>
+
+<script>
+	$(document).ready(function () {
+		var imageIndex = 1;   
+		var kliknuto;
+		clickOnArrows(0);  //prikazuje 1.sliku
+
+		function clickOnArrows(n) {	
+		  kliknuto = n;
+		  showSlider(imageIndex += n);
+		}
+
+		function showSlider(n) { 			
+			var i;
+			var gallery = $('#slider .image');
+
+			if (n > gallery.length) {imageIndex = 1;}  //ako je doslo do poslednje slike, vrati na prvu
+
+			if (n < 1) {imageIndex = gallery.length;} // ako je doslo do prve slike vrati na poslednju 
+
+			if(kliknuto === 0 || kliknuto === 1)  //arrow right
+			{
+				for (i = 0; i < gallery.length; i++) {	
+					$(gallery[i]).css("display", "none");     //sakriva sve slike
+
+	      		    $(gallery[i]).css("margin-left", "0px")
+	      		    			.css("left", "0px");
+				}
+
+				$(gallery[imageIndex-1]).show()
+										.css("margin-left", "-700px")
+										.animate({left: '700px'},1000);
+			}
+			else if (kliknuto === -1)    //arrow left
+			{
+				for (i = 0; i < gallery.length; i++) {	
+				      gallery[i].style.display = "none"; 
+	      			  $(gallery[i]).css("margin-left", "0px")
+	      			  				.css("left", "0px");
+				}	
+
+					$(gallery[imageIndex-1]).show()
+											.css("margin-left", "700px")
+											.animate({left: '-700px'},1000);
+			}
+		} //end showSlider
+
+	    $('.arrow.right').click(function (r) {
+	         clickOnArrows(1);
+	    });
+
+
+	    $('.arrow.left').click(function (l) {
+	          clickOnArrows(-1);    
+	    });	
+	});  //end document
+</script>	
+</body>
+</html>

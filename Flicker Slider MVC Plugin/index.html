@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Domaci-MVC</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+	<body>
+		<div id="gallery-wrapper">
+			<script id="gallery-template" type="text/x-handlebars-template">
+				<div>
+					<img src="{{currentImage}}">
+				</div>
+				<div>
+					<button id="previous"><-</button>
+					<div class="dots">
+					{{#each imagesArray}}
+						{{#ifCond ../currentImageIndex @index}}
+							<div class="selected"></div>
+						{{/ifCond}}
+
+						{{#ifNotCond ../currentImageIndex @index}}
+							<div class="notSelected"></div>
+						{{/ifNotCond}}
+					{{/each}}
+					</div>
+					<button id="next">-></button>
+					<button id="delete">Delete</button>
+				</div>
+		  	</script>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	    <script src="handlebars\handlebars.js"></script>
+	    <script src="slider.js"></script>
+	</body>
+</html>

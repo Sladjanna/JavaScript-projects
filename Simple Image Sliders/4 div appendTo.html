@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Slider</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+	<style>
+		#container{
+			width:700px; 
+			height:500px; 
+			position:relative; 
+			overflow:hidden;  
+			margin: 30px auto;
+			background-color: #58595b;
+		}
+        .slider{
+        	width:100%; 
+        	position:relative; 
+        	z-index:1;
+        }
+        .image{
+        	width:700px; 
+	     	height:500px; 
+        	float:left;    
+        	position:relative;
+        }
+ 
+        .image img{
+        	width:700px;  
+        	height:500px; 
+        	position:absolute; 
+        	display:block; 
+        	top:0; 
+        	left:0; 
+        	z-index:3;
+        }        
+        .arrow{
+        	position:absolute; 
+        	width:50px; 
+        	z-index:1000; 
+        	top:40%; 
+        }
+        .left{
+        	left:0;
+        }
+        .right{
+        	right:0;
+        }
+	</style>
+</head>
+<body>
+
+   <div id="container">
+        <a href="#" class="arrow left"><img src="arrow_left.png"  alt="arrow"></a>
+        <div class="slider">
+            <div class="image"><img src="image1.jpg" alt="" /></div>
+            <div class="image"><img src="image2.jpg" alt="" /></div>
+            <div class="image"><img src="image3.jpg" alt="" /></div>
+            <div class="image"><img src="image4.jpg" alt="" /></div>
+        </div>
+        <a href="#" class="arrow right"><img src="arrow_right.png"  alt="arrow"></a>
+    </div>
+
+<script>
+	$(document).ready(function(){
+            $('.arrow.right').click(function(e){               
+                var slider = $('.slider');  //objekat koji sadrzi divove sa slikama
+                slider.children('.image').first().animate({marginLeft:"-=700px"}, 500, function(){  //1. sliku pomeri u levo
+                    $(this).appendTo(slider).removeAttr("style");           //dodaje 1. sliku na kraj slajdera i vraca marginLeft na pocetno stanje
+                });
+            });
+
+            $('.arrow.left').click(function(e){          
+                var slider = $('.slider');
+                slider.children('.image').last().prependTo(slider).removeAttr("style").css("margin-left", "-700px").animate({marginLeft:"0"}, 500);
+            });
+        });
+</script>	
+</body>
+</html>

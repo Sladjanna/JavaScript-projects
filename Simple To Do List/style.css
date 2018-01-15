@@ -1,0 +1,28 @@
+#inputTask{
+		margin: 5px;
+		padding: 5px;
+		width: 300px;
+	}
+	#lista{
+		width: 95%;
+		margin: 5px;
+		background-color: #f4f4f4;
+		padding: 5px;
+		border: 1px solid #bababa;	
+	}
+	#lista div {   /* ceo task */
+		border: 1px solid #bababa;	
+		background-color: white;
+		margin: 5px;
+	}
+	#lista div div {  /* div za text u tasku */
+		margin: 5px;
+		padding: 5px;
+		background-color: #f7faff;
+		display: inline-block;
+		width: 90%;
+	}
+	#lista button {
+		margin: 5px;
+		padding: 5px;
+	}

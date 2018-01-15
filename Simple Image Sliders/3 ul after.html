@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Slider</title>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<style>
+	#slider {
+		width: 700px;
+		height: 500px;
+	 	overflow: hidden; 
+		margin: 30px auto;
+		border: 2px solid #58595b;
+		background-color: #58595b;
+	}
+	ul {
+		width:	700px;    /*bez ovog kada menja sliku pozadina je bela*/
+		padding:0;
+		margin:0;
+	}
+	ul li {
+		width:700px;
+		text-align:	center;		
+		list-style:	none;
+		float: left;
+	}
+	.arrow{
+		width: 50px;
+		height: 100%;
+	}
+	.arrow img{
+		width: 50px;
+		position: absolute;   /*da desna strelica ne bi pobegla dole*/
+		top: 30%;
+	}
+	.arrow img:hover{
+		background-color: grey;
+	}
+
+	.left{
+		float: left;
+	}
+
+	.right{
+		float: right;
+	}
+</style>
+
+	<div id="slider">
+        <ul>
+            <li><img src="image1.jpg"/></li>
+            <li><img src="image2.jpg"/></li>
+            <li><img src="image3.jpg"/></li>
+            <li><img src="image4.jpg"/></li>
+        </ul>
+ 		<div id="left_arrow" class="arrow left" ><img src="arrow_left.png" alt="arrow"></div> 
+		<div id="right_arrow" class="arrow right" ><img src="arrow_right.png" alt="arrow"></div>
+     </div>
+
+  <script> 
+		$(document).ready(function ($) {	
+			//animate: margin left - pomera sliku u levo za njenu duzinu
+			 $("#right_arrow").on('click', function(e){
+				$("ul").animate({marginLeft:-700},500,function(){
+
+					//pronalazi poslednju sliku u listi i ubacuje prvu sliku iza te poslednje, pronalazi koja je sada prva slika u listi
+					$(this).find("li:last").after($(this).find("li:first"));
+					
+					$(this).css({marginLeft:0}); //vraca levu ivicu liste na 0
+				})
+			});
+	
+			 $("#left_arrow").on('click', function(e){
+				$("ul").animate({marginLeft:700},500,function(){
+
+					// pronalazi poslednju sliku u listi, ubacuje je ispred prve slike u listi i pronalazi koja je sada prva slika u listi
+					$(this).find("li:last").insertBefore($(this).find("li:first"));     //$(this) je prvi element 'ul'
+
+					// Now we've taken out the left-most list item, reset the margin
+					$(this).css({marginLeft:0});
+				})
+			});
+
+		});  
+  </script>
+
+</body>
+</html>

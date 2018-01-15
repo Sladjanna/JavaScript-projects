@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slider</title>
+	<link rel="stylesheet" type="text/css" href="slider.css">
+</head>
+<body>
+	<div class="container">
+		
+		<a href="#" class="arrow next"><img src="images/arrow_right.png" alt="arrow"></a>
+		<a href="#" class="arrow prev"><img src="images/arrow_left.png" alt="arrow"></a>
+	
+
+	    <ul id="slider">   
+ 			<script id="template" type="text/x-handlebars-template">
+ 				{{#each this}}	
+					<li><img src="{{url_o}}" /> </li>
+				{{/each}}
+   			</script>
+   		</ul>
+
+	    <ul id="dots">     </ul>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+	<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+  <script src="handlebars-v4.0.10.js"></script>
+  <script src="slider.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.dots{
+	display: inline-flex; 
+}
+
+.dots div{
+	border: black;
+	border-style: solid;
+	height:20px;
+	width:20px;
+	margin: 0 5px;
+	border-radius: 30px;
+}
+
+.dots div.selected{
+	background-color:gray;
+}
+
+#gallery-wrapper{
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+#gallery-wrapper img {	
+    width: 400px;
+}
+
+#delete{
+	margin-left: 10px;
+}
